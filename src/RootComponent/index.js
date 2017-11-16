@@ -51,8 +51,7 @@ class LogoCounter extends Component {
         style={{
           width: '100%',
           height: '100vh',
-          opacity: '0.3',
-          backgroundColor: 'blue',
+          backgroundColor: 'rgba(0,0,255,0.6)',
           position: 'absolute',
           top: '0px',
         }}>
@@ -63,7 +62,7 @@ class LogoCounter extends Component {
             color: 'white',
             width: '100%'
           }}>
-          I got the error
+          I got the portal
         </h1>
       </div>
     </PortalComponent> : null;
