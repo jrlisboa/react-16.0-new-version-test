@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import logo from '../logo.svg';
 import './index.css';
 import ErrorComponent from '../ErrorComponent';
@@ -20,6 +21,7 @@ class LogoCounter extends Component {
     if (this.state.clicks > 1) {
       throw new Error('The click error!!!!!!!');
     }
+
     return (
       <div className="App">
           <header className="App-header">
