@@ -4,6 +4,30 @@ import logo from '../logo.svg';
 import './index.css';
 import ErrorComponent from '../ErrorComponent';
 
+class PortalComponent extends Component {
+  constructor(props) {
+    super(props);
+
+    this.suport = document.createElement('div');
+    this.app = document.querySelector('.App');
+  }
+
+  componentDidMount() {
+    this.app.appendChild(this.suport);
+  }
+
+  componentWillUnmount() {
+    this.app.removeChild(this.suport);
+  }
+
+  render() {
+    return ReactDOM.createPortal(
+      this.props.children,
+      this.suport,
+    );
+  }
+}
+
 class LogoCounter extends Component {
   constructor(props) {
     super(props);
@@ -18,9 +42,31 @@ class LogoCounter extends Component {
   }
 
   render() {
-    if (this.state.clicks > 1) {
-      throw new Error('The click error!!!!!!!');
-    }
+    // if (this.state.clicks > 1) {
+    //   throw new Error('The click error!!!!!!!');
+    // }
+    const portal = this.state.clicks > 1 ?
+    <PortalComponent>
+      <div
+        style={{
+          width: '100%',
+          height: '100vh',
+          opacity: '0.3',
+          backgroundColor: 'blue',
+          position: 'absolute',
+          top: '0px',
+        }}>
+        <h1
+          style={{
+            fontSize: '100px',
+            textAlign: 'center',
+            color: 'white',
+            width: '100%'
+          }}>
+          I got the error
+        </h1>
+      </div>
+    </PortalComponent> : null;
 
     return (
       <div className="App">
@@ -36,6 +82,7 @@ class LogoCounter extends Component {
             If you double-click the logo, the Portal Component will be mounted.
           </p>
           <span className="App-counter">{this.state.clicks}</span>
+          {portal}
       </div>
     );
   }

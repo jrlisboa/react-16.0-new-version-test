@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-// class PortalComponent extends Component {
-//   constructor(props) {
-//     super(props);
-//
-//     this.suport = document.createElement('div');
-//     this.app = document.querySelector('.App');
-//   }
-//
-//   componentDidMount() {
-//     this.app.appendChild(this.suport);
-//   }
-//
-//   componentWillUnmount() {
-//     this.app.removeChild(this.suport);
-//   }
-//
-//   render() {
-//     return ReactDOM.createPortal(
-//       this.props.children,
-//       this.suport,
-//     );
-//   }
-// }
+class PortalComponent extends Component {
+  constructor(props) {
+    super(props);
+
+    this.suport = document.createElement('div');
+    this.app = document.querySelector('.App');
+  }
+
+  componentDidMount() {
+    this.app.appendChild(this.suport);
+  }
+
+  componentWillUnmount() {
+    this.app.removeChild(this.suport);
+  }
+
+  render() {
+    return ReactDOM.createPortal(
+      this.props.children,
+      this.suport,
+    );
+  }
+}
 
 class ErrorComponent extends Component {
   constructor(props) {
@@ -44,6 +44,7 @@ class ErrorComponent extends Component {
   render() {
     if (this.state.errorInfo) {
       return (
+        <PortalComponent>
           <div
             style={{
               width: '100%',
@@ -63,6 +64,7 @@ class ErrorComponent extends Component {
               I got the error
             </h1>
           </div>
+        </PortalComponent>
       );
     }
     return this.props.children;
